@@ -64,19 +64,19 @@ export default function VideosPage() {
       icon: FileText,
       title: 'Full Transcript',
       description: 'Get searchable transcripts with speaker identification and accurate timestamps',
-      color: 'from-blue-400 to-cyan-500',
+      color: 'from-purple-500 to-purple-700',
     },
     {
       icon: Clock,
       title: 'Timeline Markers',
       description: 'Jump to key moments with AI-identified section markers and important timestamps',
-      color: 'from-purple-400 to-pink-500',
+      color: 'from-purple-600 to-purple-800',
     },
     {
       icon: BookOpen,
       title: 'Smart Summaries',
       description: 'Quickly grasp main topics and takeaways without watching the entire video',
-      color: 'from-amber-400 to-orange-500',
+      color: 'from-purple-400 to-purple-600',
     },
   ];
 
@@ -93,20 +93,20 @@ export default function VideosPage() {
           >
             <div className="flex justify-center mb-5">
               <motion.div
-                className="relative inline-flex items-center justify-center p-3 bg-red-500/10 rounded-xl"
+                className="relative inline-flex items-center justify-center p-3 bg-primary/10 rounded-xl"
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ repeat: Infinity, duration: 3 }}
               >
-                <Film className="h-10 w-10 text-red-500" />
+                <Film className="h-10 w-10 text-primary" />
                 <motion.div 
-                  className="absolute -inset-1 rounded-xl border-2 border-red-500/20"
+                  className="absolute -inset-1 rounded-xl border-2 border-primary/20"
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ repeat: Infinity, duration: 2, repeatDelay: 0.5 }}
                 />
               </motion.div>
             </div>
             
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-amber-500">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-700">
               YouTube Video Analyzer
             </h1>
             
@@ -154,7 +154,7 @@ export default function VideosPage() {
                     </div>
                   </div>
                   <motion.div 
-                    className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-transparent via-red-500/20 to-transparent opacity-0 group-hover:opacity-100"
+                    className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100"
                     animate={{ x: ['-100%', '100%'] }}
                     transition={{ repeat: Infinity, duration: 2 }}
                   />
@@ -172,7 +172,7 @@ export default function VideosPage() {
                 />
               </div>
 
-              {/* Circular Workflow Animation - Different from papers page */}
+              {/* Circular Workflow Animation */}
               <motion.div 
                 className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md h-full"
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -186,10 +186,27 @@ export default function VideosPage() {
                   <div className="relative w-48 h-48 mb-6">
                     {/* Base circle */}
                     <div className="absolute inset-0 rounded-full border-4 border-gray-200 dark:border-gray-700" />
-                    
+
+                    {/* Neon Ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-4 border-primary/50"
+                      style={{
+                        boxShadow: '0 0 20px rgba(79, 70, 229, 0.6), 0 0 40px rgba(79, 70, 229, 0.4), 0 0 60px rgba(79, 70, 229, 0.2)',
+                      }}
+                      animate={{
+                        opacity: [0.8, 1, 0.8],
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                      }}
+                    />
+
                     {/* Active stage marker */}
                     <motion.div 
-                      className="absolute top-1/2 left-1/2 w-10 h-10 -ml-5 -mt-5 rounded-full bg-red-500 flex items-center justify-center text-white shadow-lg"
+                      className="absolute top-1/2 left-1/2 w-10 h-10 -ml-5 -mt-5 rounded-full bg-primary flex items-center justify-center text-white shadow-lg"
                       animate={{ 
                         scale: processingStage ? [1, 1.2, 1] : 1
                       }}
@@ -213,7 +230,7 @@ export default function VideosPage() {
                           key={stage.id}
                           className={`absolute top-1/2 left-1/2 w-10 h-10 -ml-5 -mt-5 rounded-full ${
                             isActive 
-                              ? 'bg-red-500 text-white'
+                              ? 'bg-primary text-white'
                               : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-300'
                           } flex items-center justify-center`}
                           style={{ 
@@ -223,8 +240,8 @@ export default function VideosPage() {
                           animate={{ 
                             scale: isActive ? [1, 1.1, 1] : 1,
                             boxShadow: isActive 
-                              ? ['0 0 0 rgba(239, 68, 68, 0)', '0 0 20px rgba(239, 68, 68, 0.5)', '0 0 0 rgba(239, 68, 68, 0)'] 
-                              : '0 0 0 rgba(239, 68, 68, 0)' 
+                              ? ['0 0 0 rgba(79, 70, 229, 0)', '0 0 20px rgba(79, 70, 229, 0.5)', '0 0 0 rgba(79, 70, 229, 0)'] 
+                              : '0 0 0 rgba(79, 70, 229, 0)' 
                           }}
                           transition={{ 
                             duration: 2,
@@ -236,7 +253,7 @@ export default function VideosPage() {
                           {/* Connecting line */}
                           <motion.div 
                             className={`absolute top-1/2 left-1/2 h-0.5 origin-left ${
-                              isActive ? 'bg-red-500' : 'bg-gray-200 dark:bg-gray-700'
+                              isActive ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
                             }`}
                             style={{ 
                               width: '70px',
@@ -314,7 +331,7 @@ export default function VideosPage() {
           {/* Horizontal timeline - different from papers page vertical cards */}
           <div className="relative mt-20 pt-10">
             {/* Connecting line */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-amber-500 to-red-500 rounded-full" />
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-700 via-purple-600 to-purple-700 rounded-full" />
             
             <div className="grid md:grid-cols-3 gap-8">
               {[
@@ -347,7 +364,7 @@ export default function VideosPage() {
                 >
                   {/* Step number */}
                   <motion.div 
-                    className="absolute -top-16 left-1/2 -ml-6 w-12 h-12 rounded-full bg-white dark:bg-gray-800 border-2 border-red-500 flex items-center justify-center text-xl font-bold text-red-500 shadow-lg"
+                    className="absolute -top-16 left-1/2 -ml-6 w-12 h-12 rounded-full bg-white dark:bg-gray-800 border-2 border-primary flex items-center justify-center text-xl font-bold text-primary shadow-lg"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -355,7 +372,7 @@ export default function VideosPage() {
                   </motion.div>
                   
                   <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md h-full hover:shadow-lg transition-shadow">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-amber-500 flex items-center justify-center mb-4 mx-auto">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-700 to-purple-500 flex items-center justify-center mb-4 mx-auto">
                       <item.icon className="h-6 w-6 text-white" />
                     </div>
                     <h3 className="text-xl font-semibold mb-2 text-center">{item.title}</h3>
